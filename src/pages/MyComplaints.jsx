@@ -1,30 +1,24 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import API from "../services/api";
 import ComplaintCard from "../components/ComplaintCard";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 
-const UserDashboard = () => {
+const MyComplaints = () => {
   const [complaints, setComplaints] = useState([]);
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetchComplaints();
+    fetchData();
   }, []);
 
-  const fetchComplaints = async () => {
+  const fetchData = async () => {
     const res = await API.get("/api/user/complaints");
     setComplaints(res.data);
   };
 
   return (
     <div>
-      <h2>Welcome, {user?.name}</h2>
-      <p>User ID: {user?.id}</p>
-
-      <h3>Your Complaints</h3>
-
+      <h2>My Complaints</h2>
       {complaints.map((c) => (
         <ComplaintCard
           key={c.id}
@@ -36,4 +30,4 @@ const UserDashboard = () => {
   );
 };
 
-export default UserDashboard;
+export default MyComplaints;

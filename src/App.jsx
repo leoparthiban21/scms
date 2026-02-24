@@ -10,6 +10,10 @@ import AdminDashboard from "./pages/AdminDashboard";
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
 
+import CreateComplaint from "./pages/CreateComplaint";
+import MyComplaints from "./pages/MyComplaints";
+import ComplaintDetails from "./pages/ComplaintDetails";
+
 function App() {
   return (
     <AuthProvider>
@@ -25,7 +29,11 @@ function App() {
                 <UserLayout />
               </ProtectedRoute>
             }
-          >
+            >
+              <Route path="create" element={<CreateComplaint />} />
+              <Route path="complaints" element={<MyComplaints />} />
+              <Route path="complaints/:id" element={<ComplaintDetails />} />
+          
             <Route path="dashboard" element={<UserDashboard />} />
           </Route>
 
