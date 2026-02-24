@@ -9,14 +9,33 @@ const AdminDashboard = () => {
   const [filteredComplaints, setFilteredComplaints] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/admin/complaints")
-      .then(res => res.json())
-      .then(data => {
-        setComplaints(data);
-        setFilteredComplaints(data);
-      });
-  }, []);
+  const dummyData = [
+    {
+      id: 1,
+      userName: "Arun",
+      category: "Electrical",
+      status: "Pending",
+      resolutionNote: ""
+    },
+    {
+      id: 2,
+      userName: "Kumar",
+      category: "Water",
+      status: "In Progress",
+      resolutionNote: ""
+    },
+    {
+      id: 3,
+      userName: "Divya",
+      category: "Internet",
+      status: "Resolved",
+      resolutionNote: "Router replaced"
+    }
+  ];
 
+  setComplaints(dummyData);
+  setFilteredComplaints(dummyData);
+}, []);
   return (
     <div className="admin-dashboard">
       <h2>Admin Dashboard</h2>
